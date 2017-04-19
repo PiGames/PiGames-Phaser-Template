@@ -1,3 +1,5 @@
+export const BACKGROUND_COLOR = '#f06292';
+
 export const BUTTON_PADDING = 20;
 
 export const STORY_FONT = { font: '88px "Bromine"', fill: '#fff', shadow: '0 0 rgba(0, 0, 0, 0.5) 10' };

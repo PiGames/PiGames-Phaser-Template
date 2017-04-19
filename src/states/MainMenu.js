@@ -6,7 +6,6 @@ import { MENU_HIGHSCORE_FONT, BUTTON_PADDING } from '../constants/UIConstants';
 
 export default class MainMenu extends Phaser.State {
   create() {
-    this.add.sprite( 0, 0, 'background' );
     const title = this.add.sprite( this.world.width * 0.5, ( this.world.height - 100 ) * 0.5, 'title' );
     title.anchor.set( 0.5 );
 

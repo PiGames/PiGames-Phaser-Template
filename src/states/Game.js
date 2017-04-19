@@ -29,8 +29,8 @@ export default class Game extends Phaser.State {
     bmd.ctx.beginPath();
     bmd.ctx.rect( 0, 0, width, height );
     bmd.ctx.lineWidth = 6;
-    bmd.ctx.strokeStyle = '#000000';
-    bmd.ctx.fillStyle = '#0f872c';
+    bmd.ctx.strokeStyle = '#1c1c1c';
+    bmd.ctx.fillStyle = '#373737';
     bmd.ctx.fill();
     bmd.ctx.stroke();
 

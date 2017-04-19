@@ -321,6 +321,8 @@ exports.default = Text;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var BACKGROUND_COLOR = exports.BACKGROUND_COLOR = '#f06292';
+
 var BUTTON_PADDING = exports.BUTTON_PADDING = 20;
 
 var STORY_FONT = exports.STORY_FONT = { font: '88px "Bromine"', fill: '#fff', shadow: '0 0 rgba(0, 0, 0, 0.5) 10' };
@@ -346,6 +348,8 @@ var CREDITS_FONT = exports.CREDITS_FONT = { font: '56px "Bromine"', fill: '#fff'
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var BACKGROUND_COLOR = exports.BACKGROUND_COLOR = '#f06292';
+
 var BUTTON_PADDING = exports.BUTTON_PADDING = 20;
 
 var STORY_FONT = exports.STORY_FONT = { font: '88px "Bromine"', fill: '#fff', shadow: '0 0 rgba(0, 0, 0, 0.5) 10' };
@@ -407,6 +411,8 @@ var _createClass = function () {
   };
 }();
 
+var _UIConstants = require('../constants/UIConstants');
+
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -437,7 +443,7 @@ var Boot = function (_Phaser$State) {
   _createClass(Boot, [{
     key: 'preload',
     value: function preload() {
-      this.game.stage.backgroundColor = '#2196F3';
+      this.game.stage.backgroundColor = _UIConstants.BACKGROUND_COLOR;
       this.game.load.image('loading-background', 'img/loading-background.png');
       this.game.load.image('loading-progress', 'img/loading-progress.png');
     }
@@ -456,7 +462,7 @@ var Boot = function (_Phaser$State) {
 
 exports.default = Boot;
 
-},{}],7:[function(require,module,exports){
+},{"../constants/UIConstants":3}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -631,8 +637,8 @@ var Game = function (_Phaser$State) {
       bmd.ctx.beginPath();
       bmd.ctx.rect(0, 0, width, height);
       bmd.ctx.lineWidth = 6;
-      bmd.ctx.strokeStyle = '#000000';
-      bmd.ctx.fillStyle = '#0f872c';
+      bmd.ctx.strokeStyle = '#1c1c1c';
+      bmd.ctx.fillStyle = '#373737';
       bmd.ctx.fill();
       bmd.ctx.stroke();
 
@@ -758,7 +764,6 @@ var MainMenu = function (_Phaser$State) {
   _createClass(MainMenu, [{
     key: 'create',
     value: function create() {
-      this.add.sprite(0, 0, 'background');
       var title = this.add.sprite(this.world.width * 0.5, (this.world.height - 100) * 0.5, 'title');
       title.anchor.set(0.5);
 
@@ -942,17 +947,17 @@ exports.default = Preloader;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () {
-    function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-        }
-    }return function (Constructor, protoProps, staticProps) {
-        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-    };
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
 }();
 
 var _AudioManager = require('../utils/AudioManager');
@@ -964,65 +969,65 @@ var _Text2 = _interopRequireDefault(_Text);
 var _UIConstants = require('../constants/UIConstants');
 
 function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
+  return obj && obj.__esModule ? obj : { default: obj };
 }
 
 function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
 }
 
 function _possibleConstructorReturn(self, call) {
-    if (!self) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && (typeof call === "object" || typeof call === "function") ? call : self;
 }
 
 function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 }
 
 var Story = function (_Phaser$State) {
-    _inherits(Story, _Phaser$State);
+  _inherits(Story, _Phaser$State);
 
-    function Story() {
-        _classCallCheck(this, Story);
+  function Story() {
+    _classCallCheck(this, Story);
 
-        return _possibleConstructorReturn(this, (Story.__proto__ || Object.getPrototypeOf(Story)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (Story.__proto__ || Object.getPrototypeOf(Story)).apply(this, arguments));
+  }
+
+  _createClass(Story, [{
+    key: 'create',
+    value: function create() {
+
+      new _Text2.default(this.game, 'center', 'center', 'Avoid heads to stay alive.', _UIConstants.STORY_FONT);
+
+      var buttonContinue = this.add.button(this.world.width - 20, this.game.world.height - 20, 'button-continue', this.clickContinue, this, 1, 0, 2);
+
+      buttonContinue.anchor.set(1, 1);
+      buttonContinue.x = this.world.width + buttonContinue.width + 20;
+
+      this.add.tween(buttonContinue).to({ x: this.world.width - 20 }, 500, Phaser.Easing.Exponential.Out, true);
+
+      this.camera.flash(0x000000, 500, false);
     }
+  }, {
+    key: 'clickContinue',
+    value: function clickContinue() {
+      var _this2 = this;
 
-    _createClass(Story, [{
-        key: 'create',
-        value: function create() {
+      (0, _AudioManager.playAudio)('click');
+      this.camera.fade(0x000000, 200, false);
+      this.camera.onFadeComplete.add(function () {
+        _this2.game.state.start('Game');
+      }, this);
+    }
+  }]);
 
-            new _Text2.default(this.game, 'center', 'center', 'Avoid heads to stay alive.', _UIConstants.STORY_FONT);
-
-            var buttonContinue = this.add.button(this.world.width - 20, this.game.world.height - 20, 'button-continue', this.clickContinue, this, 1, 0, 2);
-
-            buttonContinue.anchor.set(1, 1);
-            buttonContinue.x = this.world.width + buttonContinue.width + 20;
-
-            this.add.tween(buttonContinue).to({ x: this.world.width - 20 }, 500, Phaser.Easing.Exponential.Out, true);
-
-            this.camera.flash(0x000000, 500, false);
-        }
-    }, {
-        key: 'clickContinue',
-        value: function clickContinue() {
-            var _this2 = this;
-
-            (0, _AudioManager.playAudio)('click');
-            this.camera.fade(0x000000, 200, false);
-            this.camera.onFadeComplete.add(function () {
-                _this2.game.state.start('Game');
-            }, this);
-        }
-    }]);
-
-    return Story;
+  return Story;
 }(Phaser.State);
 
 exports.default = Story;
