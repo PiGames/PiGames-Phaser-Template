@@ -16,3 +16,4 @@ export const MENU_HIGHSCORE_FONT = { font: '56px "Bromine"', fill: '#fff', align
 
 export const CREDITS_TITLE_FONT = { font: '128px "Bromine"', fill: '#fff', align: 'center', shadow: '0 0 rgba(0, 0, 0, 0.5) 10' };
 export const CREDITS_FONT = { font: '56px "Bromine"', fill: '#fff', align: 'center', shadow: '0 0 rgba(0, 0, 0, 0.5) 10' };
+export const CREDITS_FONT_SOUNDS = { font: '36px "Bromine"', fill: '#fff', align: 'center', shadow: '0 0 rgba(0, 0, 0, 0.5) 10' };

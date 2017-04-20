@@ -341,6 +341,7 @@ var MENU_HIGHSCORE_FONT = exports.MENU_HIGHSCORE_FONT = { font: '56px "Bromine"'
 
 var CREDITS_TITLE_FONT = exports.CREDITS_TITLE_FONT = { font: '128px "Bromine"', fill: '#fff', align: 'center', shadow: '0 0 rgba(0, 0, 0, 0.5) 10' };
 var CREDITS_FONT = exports.CREDITS_FONT = { font: '56px "Bromine"', fill: '#fff', align: 'center', shadow: '0 0 rgba(0, 0, 0, 0.5) 10' };
+var CREDITS_FONT_SOUNDS = exports.CREDITS_FONT_SOUNDS = { font: '36px "Bromine"', fill: '#fff', align: 'center', shadow: '0 0 rgba(0, 0, 0, 0.5) 10' };
 
 },{}],4:[function(require,module,exports){
 'use strict';
@@ -368,6 +369,7 @@ var MENU_HIGHSCORE_FONT = exports.MENU_HIGHSCORE_FONT = { font: '56px "Bromine"'
 
 var CREDITS_TITLE_FONT = exports.CREDITS_TITLE_FONT = { font: '128px "Bromine"', fill: '#fff', align: 'center', shadow: '0 0 rgba(0, 0, 0, 0.5) 10' };
 var CREDITS_FONT = exports.CREDITS_FONT = { font: '56px "Bromine"', fill: '#fff', align: 'center', shadow: '0 0 rgba(0, 0, 0, 0.5) 10' };
+var CREDITS_FONT_SOUNDS = exports.CREDITS_FONT_SOUNDS = { font: '36px "Bromine"', fill: '#fff', align: 'center', shadow: '0 0 rgba(0, 0, 0, 0.5) 10' };
 
 },{}],5:[function(require,module,exports){
 'use strict';
@@ -524,10 +526,23 @@ var Wiki = function (_Phaser$State) {
       this.camera.resetFX();
       this.camera.flash(0x000000, 500, false);
 
-      var creditsTitle = new _Text2.default(this.game, 'center', 0, 'Credits:', _UIconstants.CREDITS_TITLE_FONT);
-      var creditsText = new _Text2.default(this.game, 'center', 'center', 'Bartek „bibixx” Legięć\nKacper Pietrzak', _UIconstants.CREDITS_FONT);
+      var textGroup = this.game.add.group();
 
-      creditsTitle.y = creditsText.y - creditsText.height / 2 - creditsTitle.height;
+      var creditsTitle = new _Text2.default(this.game, 'center', 0, 'Credits:', _UIconstants.CREDITS_TITLE_FONT);
+      var creditsText = new _Text2.default(this.game, 'center', 0, 'Bartek „bibixx” Legięć\nKacper Pietrzak', _UIconstants.CREDITS_FONT);
+      var creditsTextSound = new _Text2.default(this.game, 'center', 0, '\nSounds\n„Farty McSty”\nby Eric Matyas\nwww.soundimage.org\n\n„Click2 Sound”\nby Sebastian\nwww.soundbible.com', _UIconstants.CREDITS_FONT_SOUNDS);
+
+      var heightSum = creditsTitle.height + creditsText.height + creditsTextSound.height;
+      var heightDelta = (this.game.height - heightSum) / 2;
+
+      creditsTitle.y += heightDelta;
+      creditsText.y += creditsTitle.height + creditsTitle.y;
+      creditsTextSound.y += creditsText.y + creditsText.height;
+
+      textGroup.add(creditsText);
+      textGroup.add(creditsTextSound);
+
+      textGroup.x = 0;
 
       var buttonMainMenu = this.add.button(this.world.width - 20, this.world.height - 20, 'button-mainmenu', this.clickBack, this, 1, 0, 2);
       buttonMainMenu.anchor.set(1);
