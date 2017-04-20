@@ -12,13 +12,15 @@ Fully mobile responsive, portrait and landscape compatible template for **HTML5 
 
 - fully responsive
 - main menu with buttons
-- story and achievements screens
+- story and credits screens
 - audio management
 - highscore management
 - paused and game over states
 - localStorage Phaser plugin
 - tweens and animations
-- particle emitters
 - camera effects: shake, flash, fade
 
 This template is based on [https://github.com/EnclaveGames/Enclave-Phaser-Template](https://github.com/EnclaveGames/Enclave-Phaser-Template)
+
+### Live preview
+You can see how it works here [http://pigam.es/PiGames-Phaser-Template/](http://pigam.es/PiGames-Phaser-Template/)
