@@ -23,4 +23,4 @@ Fully mobile responsive, portrait and landscape compatible template for **HTML5 
 This template is based on [https://github.com/EnclaveGames/Enclave-Phaser-Template](https://github.com/EnclaveGames/Enclave-Phaser-Template)
 
 ### Live preview
-You can see how it works here [http://pigam.es/PiGames-Phaser-Template/](http://pigam.es/PiGames-Phaser-Template/)
+You can see how it works [here](https://pigames.github.io/PiGames-Phaser-Template/build)
