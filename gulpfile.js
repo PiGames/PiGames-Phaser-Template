@@ -1,18 +1,18 @@
-var del = require('del');
-var gulp = require('gulp');
-var path = require('path');
 var argv = require('yargs').argv;
-var gutil = require('gulp-util');
-var source = require('vinyl-source-stream');
-var buffer = require('gulp-buffer');
-var uglify = require('gulp-uglify');
-var stripDebug = require('gulp-strip-debug');
-var gulpif = require('gulp-if');
-var exorcist = require('exorcist');
 var babelify = require('babelify');
 var browserify = require('browserify');
 var browserSync = require('browser-sync');
+var buffer = require('gulp-buffer');
+var del = require('del');
+var exorcist = require('exorcist');
 var ghPages = require('gulp-gh-pages');
+var gulp = require('gulp');
+var gulpif = require('gulp-if');
+var gutil = require('gulp-util');
+var path = require('path');
+var source = require('vinyl-source-stream');
+var stripDebug = require('gulp-strip-debug');
+var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 
 /**
@@ -174,6 +174,30 @@ function serve() {
 
 }
 
+gulp.task( "deploy-for-testers", () => {
+  const msg = argv.message || argv.m || null;
+  let options = { branch: "master", force: true };
+
+  if ( msg !== null ) {
+    options.message = msg;
+  }
+
+  return gulp.src( "./build/**/*" ).pipe( ghPages( options ) );
+} );
+
+gulp.task( "deploy", () => {
+  if ( argv.confirm ) {
+    const msg = argv.message || argv.m || null;
+    const options = { force: true };
+    if ( msg !== null ) {
+      options.message = msg;
+    }
+
+    return gulp.src( "./build/**/*" ).pipe( ghPages( options ) );
+  } else {
+    gutil.log( gutil.colors.red("To deploy to master on main repository confirm it with --confirm argument") );
+  }
+} );
 
 gulp.task('cleanBuild', cleanBuild);
 gulp.task('copyStatic', ['cleanBuild'], copyStatic);
