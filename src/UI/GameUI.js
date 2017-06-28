@@ -136,19 +136,11 @@ export default class GameUI {
   }
 
   statePlaying() {
-    this.state.startHeads.call( this.state );
-    const tween = this.game.add.tween( this.screenPausedGroup );
-    tween.to( { alpha: 0 }, 100, Phaser.Easing.Linear.None, true );
-    tween.onComplete.add( () => {
-      if ( this.screenPausedGroup.visible ) {
-        this.screenPausedGroup.visible = false;
-      }
-    }, this );
+
   }
 
   statePaused() {
     this.screenPausedGroup.visible = true;
-    this.state.stopHeads.call( this.state );
     const tween = this.game.add.tween( this.screenPausedGroup );
     tween.to( { alpha: 1 }, 100, Phaser.Easing.Linear.None, true );
   }
@@ -166,7 +158,6 @@ export default class GameUI {
   stateGameover() {
     this.stateStatus = 'gameover';
     this.game.time.events.pause();
-    this.state.stopHeads.call( this.state );
     this.game.world.bringToTop( this.screenGameoverGroup );
     this.screenGameoverScore.setText( `You have survived for ${Math.floor( this.score )} seconds` );
 

@@ -179,23 +179,11 @@ var GameUI = function () {
     }
   }, {
     key: 'statePlaying',
-    value: function statePlaying() {
-      var _this = this;
-
-      this.state.startHeads.call(this.state);
-      var tween = this.game.add.tween(this.screenPausedGroup);
-      tween.to({ alpha: 0 }, 100, Phaser.Easing.Linear.None, true);
-      tween.onComplete.add(function () {
-        if (_this.screenPausedGroup.visible) {
-          _this.screenPausedGroup.visible = false;
-        }
-      }, this);
-    }
+    value: function statePlaying() {}
   }, {
     key: 'statePaused',
     value: function statePaused() {
       this.screenPausedGroup.visible = true;
-      this.state.stopHeads.call(this.state);
       var tween = this.game.add.tween(this.screenPausedGroup);
       tween.to({ alpha: 1 }, 100, Phaser.Easing.Linear.None, true);
     }
@@ -215,7 +203,6 @@ var GameUI = function () {
     value: function stateGameover() {
       this.stateStatus = 'gameover';
       this.game.time.events.pause();
-      this.state.stopHeads.call(this.state);
       this.game.world.bringToTop(this.screenGameoverGroup);
       this.screenGameoverScore.setText('You have survived for ' + Math.floor(this.score) + ' seconds');
 
@@ -656,60 +643,13 @@ var Game = function (_Phaser$State) {
       bmd.ctx.fillStyle = '#373737';
       bmd.ctx.fill();
       bmd.ctx.stroke();
-
-      this.player = this.game.add.sprite(this.game.world.centerX, this.game.height, bmd);
-      this.player.anchor.setTo(0.5, 0.5);
-      this.game.physics.arcade.enable(this.player);
-      this.player.body.moves = false;
-      this.player.body.immovable = true;
-
-      this.interval = 1;
-
-      this.game.time.events.add(Phaser.Timer.SECOND, this.spawnHead, this);
-    }
-  }, {
-    key: 'handleCollision',
-    value: function handleCollision() {
-      this.gameUI.stateGameover();
-    }
-  }, {
-    key: 'spawnHead',
-    value: function spawnHead() {
-      var head = this.heads.create(0, 0, 'head');
-      head.x = this.game.rnd.integerInRange(head.width, this.game.width);
-      head.anchor.set(1, 1);
-      head.immovable = true;
-      head.body.velocity.y = 300;
-
-      this.interval *= 1.005;
-
-      this.game.time.events.add(Phaser.Timer.SECOND * (1 / this.interval), this.spawnHead, this);
-    }
-  }, {
-    key: 'stopHeads',
-    value: function stopHeads() {
-      this.heads.forEach(function (head) {
-        head.savedVY = head.body.velocity.y;
-        head.body.velocity.y = 0;
-      });
-    }
-  }, {
-    key: 'startHeads',
-    value: function startHeads() {
-      this.heads.forEach(function (head) {
-        head.body.velocity.y = head.savedVY;
-      });
     }
   }, {
     key: 'update',
     value: function update() {
       this.gameUI.updateUI();
 
-      if (this.gameUI.stateStatus === 'playing') {
-        this.game.physics.arcade.collide(this.player, this.heads, this.handleCollision, null, this);
-        this.player.x = this.game.input.x;
-        this.player.y = this.game.input.y;
-      }
+      if (this.gameUI.stateStatus === 'playing') {}
     }
   }]);
 
@@ -896,8 +836,8 @@ function _inherits(subClass, superClass) {
 }
 
 var resources = {
-  'image': [['background', 'img/background.png'], ['title', 'img/title.png'], ['head', 'img/head.png'], ['logo-pigames', 'img/logo-pigames.png'], ['overlay', 'img/ui/overlay.png'], ['nutrition-bar-background', 'img/ui/nutrition-bar-background.png']],
-  'spritesheet': [['button-start', 'img/ui/button-start.png', 160, 160], ['button-continue', 'img/ui/button-start.png', 160, 160], ['button-mainmenu', 'img/ui/button-mainmenu.png', 160, 160], ['button-restart', 'img/ui/button-tryagain.png', 160, 160], ['button-credits', 'img/ui/button-credits.png', 160, 160], ['button-pause', 'img/ui/button-pause.png', 160, 160], ['button-audio', 'img/ui/button-sound.png', 160, 160], ['button-back', 'img/button-back.png', 70, 70], ['button-next', 'img/button-next.png', 70, 70], ['bob', 'img/assets/bob.png', 460, 1370], ['nutrition-bar', 'img/ui/nutrition-bar.png', 680, 56], ['products', 'img/assets/products-en.png', 200, 150]],
+  'image': [['title', 'img/title.png'], ['logo-pigames', 'img/logo-pigames.png'], ['overlay', 'img/ui/overlay.png']],
+  'spritesheet': [['button-start', 'img/ui/button-start.png', 160, 160], ['button-continue', 'img/ui/button-start.png', 160, 160], ['button-mainmenu', 'img/ui/button-mainmenu.png', 160, 160], ['button-restart', 'img/ui/button-tryagain.png', 160, 160], ['button-credits', 'img/ui/button-credits.png', 160, 160], ['button-pause', 'img/ui/button-pause.png', 160, 160], ['button-audio', 'img/ui/button-sound.png', 160, 160], ['button-back', 'img/button-back.png', 70, 70], ['button-next', 'img/button-next.png', 70, 70]],
   'audio': [['audio-click', ['sfx/click.mp3', 'sfx/click.ogg']], ['audio-theme', ['sfx/farty-mcsty.m4a', 'sfx/farty-mcsty.mp3', 'sfx/farty-mcsty.ogg']]]
 };
 
@@ -948,7 +888,6 @@ var Preloader = function (_Phaser$State) {
       if (this.initialFontSize !== this.span.clientHeight) {
         document.body.removeChild(this.span);
         this.state.start('MainMenu');
-        // this.state.start( 'Game' );
       }
     }
   }]);
